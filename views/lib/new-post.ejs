@@ -1,0 +1,209 @@
+<%- include('../partials/header') -%>
+
+<div id="notify" data-post="<%= status %>">
+    <span></span> <a onclick="closeNotice()"><i class="bi bi-x-lg"></i></a>
+</div>
+
+<script>
+    $(window).on('load', function(){
+        setTimeout(function(){
+            if(($("#notify").attr('data-post')) != ''){
+                $("#notify").css('display', 'block');
+                $("#notify span").text("Your Post was published successfully");
+            }
+        }, 1500)
+    });
+    function closeNotice(){
+        $("#notify").css('display', 'none');
+    }
+</script>
+
+<div class="mains">
+    <div class="rows">
+        <div class="col">
+            <h1>Add A New Post</h1>
+        </div>
+    </div>
+    <form id="addPost" action="/insert-post" method="POST" enctype="multipart/form-data">
+        <div class="rows">
+            <div class="col75">
+                <label for="title">Post Title</label>
+                <input type="text" name="title" id="title" placeholder="Enter Post Title" required>
+                <label for="editor">Add Post Description</label>
+                <textarea name="description" id="editor" class="editor" height="600"></textarea>
+            </div>
+            <div class="col25">
+                <div class="rows">
+                    <div class="col">
+                        <div id="togglePanel" onclick="openNav()">SEO Info</div>
+                    </div>
+                </div>
+                <div class="rows">
+                    <div class="col">
+                        <div id="mySidenav" class="sidenav">
+                            <div class="metaInfo">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                <label for="meta_keywords">Meta Keywords</label>
+                                <input type="text" name="meta_keywords" id="meta_keywords" placeholder="Add Meta Keywords" required>
+                                
+                                <label for="meta_description">Meta Description</label>
+                                <textarea id="meta_description" name="meta_description" placeholder="Add Meta Description" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rows">
+                    <div class="col">
+                        <label for="visibility">visibility</label>
+                        <select name="visibility" id="visibility" required>
+                            <option value="" disabled></option>
+                            <option value="public" selected>Public</option>
+                            <option value="private">Private</option>
+                            <option value="password_protected">Password Protected</option>
+                        </select>
+
+                        <label for="postSlug">Post URL</label>
+                        <input type="text" name="slug" id="postSlug" required>
+
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <% for (var i = 0; i < category.length; i++) { %>
+                                <option value="<%= category[i].cat_id%>"><%= category[i].category%></option>
+                            <%} %>
+                        </select>
+
+                        <label for="ConentType">Content Type</label>
+                        <select id="ConentType" name="content_type" required>
+                            <option value="" disabled selected>Select Content type</option>
+                            <% for (var i = 0; i < type.length; i++) { %>
+                                <option value="<%= type[i].type_id%>"><%= type[i].Content_name%></option>
+                            <%} %>
+                        </select>
+
+                        <label for="Status">Status</label>
+                        <select id="Status" name="status">
+                            <option value="" disabled selected>Select Status</option>
+                            <option value="publish" selected>Publish</option>
+                            <option value="draft">Draft</option>
+                        </select>
+
+                        <input type="checkbox" name="terms" id="terms">
+                        <label for="terms">Do you agree to our terms and Conditions</label>
+
+                        <label for="featured_image">Featured Image</label>
+                        <input type="file" name="featured_image" id="featured_image" required>
+                        <input type="submit" value="Publish Now" id="publishBtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<script>
+
+    $(document).ready(function() {
+        //Create Post URL
+        $('#title').change(function() {
+            var url = $(this).val().toLowerCase();
+            console.log(url);
+            $('#postSlug').val(url.replace(/ /g, '-'));
+        });
+    });
+
+    function openNav() {
+        $('#mySidenav').css("width", "350px");
+    }
+    
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        $('#mySidenav').css("width", "0");
+    }
+
+    //Send Data to the server
+    /*
+    $(document).ready(function(){
+        $('#addPost').submit(function(s){
+            s.preventDefault();
+            var title = $('#title').val();
+            var description = $('.editor').val();
+            var meta_keywords = $('#meta_keywords').val();
+            var meta_description = $('#meta_description').val();
+            var visibility = $('#visibility').val();
+            var postSlug = $('#postSlug').val();
+            var category = $('#category').val();
+            var ConentType = $('#ConentType').val();
+            var Status = $('#Status').val();
+            var thisForm = $("#addPost");
+            var formData = new FormData(thisForm[0]);
+            var obj = {
+                title: title, 
+                description: description,
+                meta_keywords: meta_keywords,
+                meta_description: meta_description,
+                visibility: visibility,
+                postSlug: postSlug,
+                category: category,
+                ConentType: ConentType,
+                Status: Status,
+                //source: 'blob',
+                file: featured_image.files[0]
+            }
+            $.ajax({
+                url: '/insert_post',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: obj,
+                success: function(data){
+                    console.log(data);
+                }
+            })
+        })
+        
+
+    });*/
+</script>
+
+    <script type="text/javascript" src="/ckeditor/build/ckeditor.js"></script>
+
+    <script>
+        const watchdog = new CKSource.EditorWatchdog();
+        
+        window.watchdog = watchdog;
+        
+        watchdog.setCreator( ( element, config ) => {
+            return CKSource.Editor
+                .create( element, config )
+                .then( editor => {
+                    return editor;
+                } )
+        } );
+        
+        watchdog.setDestructor( editor => {
+            return editor.destroy();
+        } );
+        
+        watchdog.on( 'error', handleError );
+        
+        watchdog
+            .create( document.querySelector( '.editor' ), {
+                licenseKey: '',
+            } )
+            .catch( handleError );
+        
+        function handleError( error ) {
+            console.error( 'Oops, something went wrong!' );
+            console.error( 'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:' );
+            console.warn( 'Build id: jibblm7tpsow-etyy9ci9ipb' );
+            console.error( error );
+        }
+        
+        
+
+    </script>
+    
+    
+</div>
+
+<%- include('../partials/footer') -%>

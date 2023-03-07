@@ -1,0 +1,78 @@
+<%- include('../partials/header') -%>
+
+<div class="mains">
+    
+    <div class="rows">
+        <div class="col35">
+            <h4>Add New Category</h4>
+            <form id="contentForm">
+                <label for="name">Content Type</label>
+                <input type="text" name="name" id="name" placeholder="Enter Category Name">
+
+                <label for="name">Content Type Slug</label>
+                <input type="text" name="slug" id="slug" placeholder="Category URL" disabled>
+                <input type="submit" value="Add Category">
+            </form>
+            <div class="msg"></div>
+        </div>
+        <div class="col65">
+            <table id="contentTable">
+                <thead>
+                    <tr>
+                        <th>Content Type</th>
+                        <th>Content Type Slug</th>
+                        <th>ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < types.length; i++) { %>
+                        <tr>
+                            <td><a href="/content-type/<%= types[i].slug %>"><%= types[i].Content_name %></a></td>
+                            <td><%= types[i].slug %></td>
+                            <td><%= types[i].type_id %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#name').change(function(){
+                var category = $(this).val();
+                var slug = $(this).val().replace(/ /g, '-').toLowerCase();
+                $('#slug').val(slug);
+                console.log(category);
+                console.log(slug);
+            })
+            //Content Type Listing
+            $('#contentForm').submit(function(e){
+                e.preventDefault();
+                var name = $('#name').val();
+                var slug = $('#slug').val();
+                console.log(name, slug);
+                $.ajax({
+                    url: '/insert-type',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        name: name,
+                        slug: slug,
+                    },
+                    success: function(data){
+                        if(data.status === 'success'){
+                            $(".msg").html('<span class="success">Content Type added successfully</span>');
+                            setTimeout(function(){
+                                $("#contentTable").load(location.href + " #contentTable");
+                            }, 2000)
+                        }
+                    },
+                });
+            });
+        })
+    </script>
+
+
+</div>
+
+<%- include('../partials/footer') -%>

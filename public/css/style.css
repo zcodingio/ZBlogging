@@ -1,0 +1,480 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*Fonts Declaration*/
+@font-face {
+    font-family: 'ZCoding';
+    src: url('fonts/ZCoding-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ZCoding';
+    src: url('fonts/ZCoding-bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ZCoding';
+    src: url('fonts/ZCoding-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ZCoding';
+    src: url('fonts/ZCoding-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ZCoding';
+    src: url('fonts/ZCoding-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/*Inter font*/
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+body{
+    font-family: 'Inter';
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'ZCoding';
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+.rows{
+    display: flex;
+    flex-direction: row;
+}
+.col, .col15, .col25, .col35, .col50, .col65, .col75, .col85{
+    box-sizing: border-box;
+    padding: 6px;
+    margin: 4px;
+}
+.col{
+    width: 100%;
+}
+.col25{
+    width: 25%;
+}
+.col50{
+    width: 50%;
+}
+.col75{
+    width: 75%;
+}
+.col15{
+    width: 15%;
+}
+.col85{
+    width: 85%;
+}
+.col35{
+    width: 35%;
+}
+.col65{
+    width: 65%;
+}
+
+
+/*Header Area CSS*/
+header{
+    display:flex;
+    width:1250px;
+    max-width:100%;
+    justify-content:space-between;
+    align-items: center;
+    padding:6px 10px;
+    margin:auto;
+    background: transparent;
+    font-family: 'ZCoding';
+    font-weight: 600;
+    z-index: 10000;
+}
+header .logo img{
+    width:50px;
+}
+header ul{
+    list-style:none;
+    padding:none;
+}
+header ul li{
+    display:inline-block;
+    margin:5px;
+    padding:6px 12px;
+    border: none;
+    font-size: 14px;
+}
+header ul li:hover{
+    transition: ease-in-out 0.5s;
+}
+header ul li a, header ul li ul li a{
+    text-decoration:none;
+    color:#333;
+}
+header ul li a:hover, header ul ul li a:hover, header ul li a:active, header ul ul li a:active,
+header ul li a:focus, header ul ul li a:focus{
+    color: #3cc !important;
+}
+header ul ul{
+    display:none;
+    position: absolute;
+}
+header ul li:hover> ul{
+    background-color: #2e2d2d;
+    transition:ease 0.6s all 0s;
+    color: #fff;
+    display: block;
+}
+
+header ul ul li{
+    display: list-item;
+    float: none;
+    position: relative;
+    color: #fff;
+    font-size: 13px;
+    justify-content: center;
+    text-align: left;
+    padding: 0;
+}
+header ul ul li a{
+    float: left;;
+    padding: 10px;
+    border: none;
+    color: #fff !important;
+}
+header ul ul li a:hover{
+    background:#2e2d2d;
+    color:#ffffff;
+    transition: ease-in-out 0.3s;
+}
+.userLinks a{
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+.userLinks a:hover{
+    background-color: #2e2d2d;
+    color: #fff;
+    transition: ease-in-out 0.5s;
+    border-radius: 10px;
+}
+
+/*Main Containers*/
+.mains{
+    display: block;
+    width: 1250px;
+    max-width: 100%;
+    padding: 10px;
+}
+.full-width{
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+
+
+/*Custom Table Design*/
+
+table{
+    width:100%;
+    text-align:left
+}
+table thead{
+    background:#efefff;
+    border-radius:5px 5px 0 0;
+}
+table thead th{
+    background:#efefff;
+    padding:10px 15px;
+    font-size:14px;
+}
+table thead th:first-child{
+    border-radius:10px 0 0 0;
+}
+table thead th:last-child{
+    border-radius:0 10px 0 0;
+    
+}
+table tbody tr:nth-child(even){
+    background:#f1f1ff;
+}
+table tbody td{
+    padding:7px 15px;
+    font-size:13px;
+}
+table tbody td a{
+    text-decoration: none;
+    color: #2e2d2d;
+}
+table tbody td a:hover{
+    color: #395aff;
+}
+/*Custom Form fields styling*/
+label{
+    font-family: 'ZCoding';
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 4px;
+    margin-bottom: 5px;
+}
+input[type=text], input[type=email], input[type=password], input[type=tel], input[type=number], input[type=date], input[type=dateTime], select{
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    margin-bottom:5px;
+    padding:8px;
+    font-family: 'Inter';
+    font-size:13px;
+    border:2px solid #eeeaff;
+    border-radius:5px;
+    outline:none;
+}
+textarea{
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+    margin-bottom:5px;
+    padding:8px;
+    font-family: 'Inter';
+    font-size:13px;
+    border:2px solid #eeeaff;
+    border-radius:5px;
+    outline:none;
+    height: 100px;
+}
+input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, input[type=tel]:hover, input[type=number]:hover, input[type=date]:hover, input[type=dateTime]:hover, select:hover,
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=tel]:focus, input[type=number]:focus, input[type=date]:focus, input[type=dateTime]:focus, select:focus{
+    border:2px solid #2a6dff;
+}
+input#featured_image {
+    display: flex;
+    background: #eaeaea;
+    padding: 20px 10px;
+    width: 100%;
+    border-radius: 6px;
+    border: 2px dashed #33333314;
+}
+input[type=submit]{
+    background:#2a6dff;
+    border:none;
+    padding:10px 25px;
+    color:#fff;
+    border-radius:5px;
+    box-shadow:3px 5px 6px #3333330d;
+    outline: none;
+    margin-top: 15px;
+    cursor: pointer;   
+}
+#saveDraft{
+    background-color: #da8f04 !important;
+}
+div#togglePanel {
+    display: block;
+    width: 140px;
+    background: #333;
+    text-align: center;
+    color: #fff;
+    float: right;
+    padding: 11px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+/*Custom Messages Stylesheet*/
+.msg span.success {
+    padding: 4px 10px;
+    background: #42af7b;
+    color: #fff;
+    font-size: 13px;
+    border: 2px dashed #ffffff54;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: block;
+    width: 250px;
+    text-align: center;
+}
+
+div#notify {
+    width: 400px;
+    padding: 10px 16px;
+    background: #32c279;
+    color: #fff;
+    border-radius: 5px;
+    display: none;
+    margin: auto;
+    position: fixed;
+    top: 5px;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+}
+
+div#notify a {
+    float: right;
+    background: #ffffff42;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div#notify span {
+    float: left;
+    line-height:25px;
+}
+
+/*Side Panel CSS*/
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #f3f3f3; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px 20px 20px 20px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+.metaInfo {
+    padding: 60px 15px 15px 15px;
+}
+
+  
+  /* Position and style the close button (top right corner) */
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  
+ /*CKEditor Styling*/ 
+.ck.ck-content:not(.ck-comment__input *) {
+    height: 400px;
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border-color: var(--ck-color-base-border);
+    padding: 0% 3% !important;
+}
+
+
+
+
+
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

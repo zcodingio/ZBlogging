@@ -1,0 +1,51 @@
+<%- include('../partials/header') -%>
+
+<div class="mains">
+    
+    <div class="rows">
+        <div class="col35">
+            <h4>Add New Category</h4>
+            <form id="catForm">
+                <input type="text" name="category" id="category" placeholder="Enter Category Name">
+                <input type="text" name="category_slug" id="slug" placeholder="Category URL" disabled>
+                <input type="submit" value="Add Category">
+            </form>
+            <div class="msg"></div>
+        </div>
+        <div class="col65">
+            <table id="categoriesTable">
+                <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Category Slug</th>
+                        <th>ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < cats.length; i++) { %>
+                        <tr>
+                            <td><a href="/category/<%= cats[i].slug %>"><%= cats[i].category %></a></td>
+                            <td><%= cats[i].slug %></td>
+                            <td><%= cats[i].cat_id %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var category = $(this).val();
+                var slug = $(this).val().replace(/ /g, '-').toLowerCase();
+                $('#slug').val(slug);
+                console.log(category);
+                console.log(slug);
+            })
+        })
+    </script>
+
+
+</div>
+
+<%- include('../partials/footer') -%>
